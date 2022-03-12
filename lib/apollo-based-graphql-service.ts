@@ -1,9 +1,9 @@
-import * as core from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as lambda from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Tracing } from 'aws-cdk-lib/aws-lambda';
-import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-import { join } from 'path';
+import * as core from "aws-cdk-lib";
+import { Construct } from "constructs";
+import * as lambda from "aws-cdk-lib/aws-lambda-nodejs";
+import { Tracing } from "aws-cdk-lib/aws-lambda";
+import * as apigateway from "aws-cdk-lib/aws-apigateway";
+import { join } from "path";
 
 export interface ApolloBasedServiceProps {
   readonly serviceName: string;
@@ -33,9 +33,11 @@ export class ApolloBasedService extends Construct {
       },
     });
 
-    const graphqlPostIntegration = new apigateway.LambdaIntegration(apolloServer);
+    const graphqlPostIntegration = new apigateway.LambdaIntegration(
+      apolloServer
+    );
 
-    grapqhQLApi.root.addMethod('POST', graphqlPostIntegration);
+    grapqhQLApi.root.addMethod("POST", graphqlPostIntegration);
 
     this.graphQLApiEndpoint = grapqhQLApi.url;
   }
